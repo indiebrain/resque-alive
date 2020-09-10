@@ -1,0 +1,63 @@
+#+TITLE: resque-alive
+#+AUTHOR: Aaron Kuehler
+
+=resque-alive= adds a Kubernetes Liveness probe to a Resque instance.
+
+How?
+
+=resque-alive= provides a small rack application which exposes HTTP endpoint to return the "Aliveness" of the Resque instance. Aliveness is determined by the presence of an auto-expiring key. =resque-alive= schedules a "heartbeat" job to periodically refresh the expiring key - in the event the Resque instance can't process the job, the key expires and the instance is marked as unhealthy.
+
+** Installation
+
+  Add this line to your application's Gemfile:
+
+  #+begin_src ruby
+    gem 'resque-alive'
+  #+end_src
+
+  And then execute:
+
+  #+begin_src shell
+    bundle install
+  #+end_src
+
+  Or install it yourself as:
+
+  #+begin_src shell
+    gem install resque-alive
+  #+end_src
+
+** Usage
+
+  =resque-alive= will start when running resque command.
+
+  #+begin_src shell
+    bundle exec resque
+  #+end_src
+
+
+  #+begin_src shell
+    curl localhost:7433
+    #=> Alive key is present
+  #+end_src
+
+  =resque-alive= can be disabled via the =RESQUE_ALIVE_DISABLED= ENV var:
+
+  #+begin_src shell
+    RESQUE_ALIVE_DISABLED=true rake resque:work
+  #+end_src
+
+*** Caveats
+
+  TODO: A worker must be configured to process the alive queue
+  TODO: resque-scheduler must be running in order to process future keep-alive jobs
+
+** Development
+
+  After checking out the repo, run =bin/setup= to install dependencies. Then, run =rake spec= to run the tests. You can also run =bin/console= for an interactive prompt that will allow you to experiment.
+
+  To install this gem onto your local machine, run =bundle exec rake install=. To release a new version, update the version number in =version.rb=, and then run =bundle exec rake release=, which will create a git tag for the version, push git commits and tags, and push the =.gem= file to [[https://rubygems.org][rubygems.org]].
+
+** Contributing
+
+Bug reports and pull requests are welcome on GitHub at https://github.com/indiebrain/resque-alive. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [[https://github.com/indiebrain/resque-alive/blob/master/CODE_OF_CONDUCT.md][code of conduct]].
