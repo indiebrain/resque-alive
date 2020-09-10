@@ -1,5 +1,16 @@
 require "bundler/setup"
-require "resque/alive"
+require "resque/plugins/alive"
+
+require "bundler/setup"
+require "resque_spec"
+require "resque_spec/scheduler"
+require "mock_redis"
+require "byebug"
+
+ENV['RACK_ENV'] = 'test'
+ENV['HOSTNAME'] = 'test-hostname'
+
+Dir[File.expand_path("support/**/*.rb", __dir__)].each(&method(:require))
 
 RSpec.configure do |config|
   # Enable flags like --only-failures and --next-failure
@@ -10,5 +21,12 @@ RSpec.configure do |config|
 
   config.expect_with :rspec do |c|
     c.syntax = :expect
+  end
+
+  config.before do
+    ResqueSpec.reset!
+
+    Resque::Plugins::Alive.redis.flushall
+    Resque::Plugins::Alive.config.set_defaults
   end
 end

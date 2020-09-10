@@ -1,8 +1,3 @@
-require "resque/alive/version"
+# frozen_string_literal: true
 
-module Resque
-  module Alive
-    class Error < StandardError; end
-    # Your code goes here...
-  end
-end
+require "resque/plugins/alive"

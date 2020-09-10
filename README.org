@@ -49,8 +49,7 @@ How?
 
 *** Caveats
 
-  TODO: A worker must be configured to process the alive queue
-  TODO: resque-scheduler must be running in order to process future keep-alive jobs
+  =resque-alive= requires a [[https://github.com/resque/resque-scheduler][resque-scheduler]] process to be running in order to schedule the heartbeat Job.
 
 ** Development
 
