@@ -1,7 +1,10 @@
 * Changelog
 All notable changes to this project will be documented in this file.
 
-The format is based on [[https://keepachangelog.com/en/1.0.0/][Keep a Changelog]],
-and this project adheres to [[https://semver.org/spec/v2.0.0.html][Semantic Versioning]].
+The format is based on [[https://keepachangelog.com/en/1.0.0/][Keep a Changelog]], and this project adheres to [[https://semver.org/spec/v2.0.0.html][Semantic Versioning]].
 
-** [Unreleased]
+** [[https://github.com/indiebrain/resque-alive/compare/v0.1.0...HEAD][Unreleased]]
+
+** [[https://github.com/indiebrain/resque-alive/releases/tag/v0.1.0][0.1.0]] - 2020-09-14
+
+  - Add Kubernets liveness probe to Resque
