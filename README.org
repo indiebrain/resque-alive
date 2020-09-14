@@ -29,7 +29,7 @@ How?
 
 ** Usage
 
-  =resque-alive= will start when running resque command.
+  =resque-alive= will start when Resque starts.
 
   #+begin_src shell
     bundle exec resque
