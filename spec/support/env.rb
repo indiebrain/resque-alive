@@ -7,7 +7,11 @@ module Resque
         module Env
           def with_temporary_env(tmp_env, &block)
             env = ENV.to_hash
-            ENV.merge!(tmp_env)
+            if ENV.respond_to?(:merge!)
+              ENV.merge!(tmp_env)
+            else
+              ENV.update(tmp_env)
+            end
 
             Resque::Plugins::Alive::Config.instance.set_defaults
             block.call
