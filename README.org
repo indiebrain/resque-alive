@@ -1,6 +1,8 @@
 #+TITLE: resque-alive
 #+AUTHOR: Aaron Kuehler
 
+[[https://github.com/indiebrain/resque-alive/actions/workflows/ruby.yml][https://github.com/indiebrain/resque-alive/actions/workflows/ruby.yml/badge.svg?branch=master]]
+
 =resque-alive= adds a Kubernetes Liveness probe to a Resque instance.
 
 How?
