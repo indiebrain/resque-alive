@@ -133,7 +133,6 @@ module Resque
         "#{config.registered_instance_key}::#{hostname}"
       end
 
-
       def self.register_instance(instance_name)
         redis.set(
           instance_name,
@@ -146,7 +145,12 @@ module Resque
         # Delete any pending jobs for this instance
         logger.info(shutdown_info)
         purge_pending_jobs
+        remove_resque_alive_data
+      end
+
+      def self.remove_resque_alive_data
         redis.del(current_instance_register_key)
+        redis.del(current_liveness_key)
       end
 
       def self.purge_pending_jobs
