@@ -26,7 +26,7 @@ RSpec.configure do |config|
   config.before do
     ResqueSpec.reset!
 
-    Resque::Plugins::Alive.redis.flushall
+    Resque::Plugins::Alive.remove_resque_alive_data
     Resque::Plugins::Alive.config.set_defaults
   end
 end
